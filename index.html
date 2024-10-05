@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvendo a GamerMax</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Bienvenido a GamerMax</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#juegos">Lista de Juegos</a></li>
+          <li><a href="#registro">Registro de Desarrolladores</a></li>
+        </ul>
+      </nav>
+    </header>
+</head>
+<body>
+    <h1>Bienvenido a la Tienda de Juegos</h1>
+    <input type="text" id="filter" placeholder="Filtrar por categoría">
+    <div id="juego-lista"></div> <!-- Este es el contenedor para los juegos -->
+    <script src="script.js"></script> <!-- Enlazamos nuestro archivo de JavaScript -->
+<
+    <section id="home">
+      <h2>Lo Nuevo en la Tienda</h2>
+      <p>
+        Aquí encontrarás los últimos lanzamientos y novedades de nuestra tienda.
+      </p>
+    </section>
+
+
+    <section id="juegos">
+      <h2>Lista de Juegos</h2>
+      <input type="text" id="filter" placeholder="Filtrar por categoría..." />
+      <div id="juego-lista">
+        <!-- Lista de juegos se generará aquí -->
+      </div>
+    </section>
+
+    
+      <section id="detalle-juego">
+        <h2>Detalles del Juego</h2>
+        <div id="detalle"></div>
+        <button id="iniciar-juego">Iniciar Juego</button>
+       
+
+        <script>
+          // Otras funciones...
+
+          // Evento para el botón "Iniciar Juego"
+          document
+            .getElementById("iniciar-juego")
+            .addEventListener("click", () => {
+              window.location.href = "juego.html"; // Redirige a la nueva página del juego
+            });
+
+          // Llama a la función para mostrar juegos o cualquier otra inicialización
+          mostrarJuegos();
+        </script>
+
+        <button id="jugar" style="display: none">Jugar</button>
+        <div id="juego-area" style="display: none">
+          <p>Usa las flechas para mover el personaje.</p>
+          <div
+            id="personaje"
+            style="
+              width: 50px;
+              height: 50px;
+              background: red;
+              position: relative;
+            "
+          ></div>
+          <input type="text" id="input-text" placeholder="Escribe algo..." />
+          <div id="texto-escrito" style="margin-top: 10px"></div>
+        </div>
+      </section>
+
+      <button id="jugar" style="display: none">Jugar</button>
+      <div id="juego-area" style="display: none">
+        <p>Usa las flechas para mover el personaje.</p>
+        <div
+          id="personaje"
+          style="width: 50px; height: 50px; background: red; position: relative"
+        ></div>
+      </div>
+    </section>
+
+    <section id="registro">
+      <h2>Registro de Desarrolladores</h2>
+      <form id="form-registro">
+        <input type="text" placeholder="Nombre" required />
+        <input type="email" placeholder="Correo" required />
+        <input type="text" placeholder="Nombre del Juego" required />
+        <input type="url" placeholder="Enlace del Juego" required />
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Juegos</title>
+</head>
+<body>
+ 

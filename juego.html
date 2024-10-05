@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      #juego-area {
+        position: relative;
+        width: 400px; /* Ajusta según tu diseño */
+        height: 300px; /* Ajusta según tu diseño */
+        border: 1px solid #000;
+        overflow: hidden;
+      }
+      #personaje {
+        width: 50px;
+        height: 50px;
+        background: red;
+        position: absolute;
+      }
+      .obstaculo {
+        background: blue;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="juego-area" style="display: none">
+      <p>Usa las flechas para mover el personaje.</p>
+      <div id="personaje"></div>
+    </div>
+    <script>
+      let jugando = false;
+      let obstaculos = [];
+      const juegoArea = document.getElementById("juego-area");
+      const juegoAreaWidth = 400;
+      const juegoAreaHeight = 300;
+
+      function iniciarJuego() {
+        const personaje = document.getElementById("personaje");
+        personaje.style.top = "150px";
+        personaje.style.left = "175px";
+        jugando = true;
+        obstaculos = [];
+        crearObstaculos();
+        juegoArea.style.display = "block";
+        moverObstaculos();
+      }
+
+      function crearObstaculos() {
+        const obstaculo = document.createElement("div");
+        obstaculo.className = "obstaculo";
+        obstaculo.style.width = "30px";
+        obstaculo.style.height = "30px";
+        obstaculo.style.position = "absolute";
+        obstaculo.style.background = "blue";
+        obstaculo.style.left = Math.random() * (juegoAreaWidth - 30) + "px";
+        obstaculo.style.top = "0px";
+        juegoArea.appendChild(obstaculo);
+        obstaculos.push(obstaculo);
+      }
+
+      function moverObstaculos() {
+        if (!jugando) return;
+
+        obstaculos.forEach((obstaculo) => {
+          let top = parseInt(window.getComputedStyle(obstaculo).top);
+          obstaculo.style.top = top + 5 + "px";
+
+          if (top > juegoAreaHeight) {
+            obstaculo.remove();
+            crearObstaculos();
+          }
+        });
+
+        comprobarColisiones();
+        requestAnimationFrame(moverObstaculos);
+      }
+
+      function comprobarColisiones() {
+        const personaje = document.getElementById("personaje");
+        const personajeRect = personaje.getBoundingClientRect();
+
+        obstaculos.forEach((obstaculo) => {
+          const obstaculoRect = obstaculo.getBoundingClientRect();
+          if (
+            personajeRect.x < obstaculoRect.x + obstaculoRect.width &&
+            personajeRect.x + personajeRect.width > obstaculoRect.x &&
+            personajeRect.y < obstaculoRect.y + obstaculoRect.height &&
+            personajeRect.y + personajeRect.height > obstaculoRect.y
+          ) {
+            alert("¡Has chocado con un obstáculo!");
+            jugando = false;
+            juegoArea.style.display = "none";
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        const personaje = document.getElementById("personaje");
+        let top = parseInt(window.getComputedStyle(personaje).top);
+        let left = parseInt(window.getComputedStyle(personaje).left);
+
+        switch (e.key) {
+          case "ArrowUp":
+            if (top > 0) personaje.style.top = top - 10 + "px";
+            break;
+          case "ArrowDown":
+            if (top < juegoAreaHeight - 50)
+              personaje.style.top = top + 10 + "px";
+            break;
+          case "ArrowLeft":
+            if (left > 0) personaje.style.left = left - 10 + "px";
+            break;
+          case "ArrowRight":
+            if (left < juegoAreaWidth - 50)
+              personaje.style.left = left + 10 + "px";
+            break;
+          default:
+            break;
+        }
+
+        comprobarColisiones();
+      });
+
+      iniciarJuego(); // Inicia el juego al cargar la página
+    </script>
+  </body>
+</html>

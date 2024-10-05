@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #1be074;
+}
+
+header {
+  background: #333;
+  color: #b61313;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+h2 {
+  color: #333;
+}
+
+#juego-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.juego {
+  background: #291692;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #2f0ea7;
+}
+
+button {
+  margin-top: 10px;
+}
+
+#juego-area {
+  margin-top: 20px;
+  border: 1px solid #480ea5;
+  padding: 10px;
+  background: #154dc5;
+}
+.obstaculo {
+  background: blue;
+  position: absolute;
+}
